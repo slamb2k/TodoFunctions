@@ -14,7 +14,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="host.json" />
-    <None Remove="Index.html" />
+    <None Remove="index.html" />
     <None Remove="proxies.json" />
   </ItemGroup>
   <ItemGroup>
