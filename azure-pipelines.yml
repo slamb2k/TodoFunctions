@@ -29,3 +29,18 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: 'ToDoFunctions/www'
+    contents: '**' 
+    targetFolder: '$(build.artifactStagingDirectory)/www'
+    #cleanTargetFolder: false # Optional
+    #overWrite: false # Optional
+    #flattenFolders: false # Optional
+    
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'drop'
+    targetPath: '$(build.artifactStagingDirectory)'
+
