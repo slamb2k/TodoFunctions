@@ -10,5 +10,6 @@ namespace ToDoFunctions.Entities
         
         public DateTime? due { get; set; }
         public bool isComplete { get; set; }
+        public decimal Sentiment { get; set; }
     }
 }
