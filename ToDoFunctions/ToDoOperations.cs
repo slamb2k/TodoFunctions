@@ -84,9 +84,8 @@ namespace ToDoFunctions
                      { "todo-id", todo.id}
                 };
 
-                log.Info("Triggered a queue.");
-                string yourinfo = "yourinfo";       
-                await outputQueue.AddAsync(yourinfo);
+                log.Info("Triggered a queue message.");
+                await outputQueue.AddAsync(todo.id);
 
                 telemetryClient.TrackEvent("create-todo", metrics: metrics);
                 return req.CreateResponse(HttpStatusCode.Created, todo);
