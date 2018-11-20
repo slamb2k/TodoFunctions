@@ -5,7 +5,7 @@
 * API built using Azure Functions, storing data in Azure Table Storage
 * Static web content hosted in Azure Blob Storage
 * A Single Page Application front-end using JQuery
-
+* Rian rocks
 
 ## Getting Started
 To open the project, you will need a copy of Visual Studio 2017 with the Azure development workload installed.
