@@ -66,7 +66,7 @@ namespace ToDoFunctions
         }
 
         [FunctionName("CreateToDo")]
-        public static async Task<HttpResponseMessage> CreateToDo([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/todos")]HttpRequestMessage req, [Table("todotable", Connection = "MyTable")]CloudTable table, TraceWriter log, ExecutionContext context)
+        public static async Task<HttpResponseMessage> CreateToDo([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/todos")]HttpRequestMessage req, [Table("todotable", Connection = "MyTable")]CloudTable table, TraceWriter log, ExecutionContext context, [Queue("todoqueue")] IAsyncCollector<string> outputQueue)
         { TelemetryClient telemetryClient = telemetryFactory.GetClient();
             try
             {
@@ -84,7 +84,10 @@ namespace ToDoFunctions
                      { "todo-id", todo.id}
                 };
 
-               
+                log.Info("Triggered a queue.");
+                string yourinfo = "yourinfo";       
+                await outputQueue.AddAsync(yourinfo);
+
                 telemetryClient.TrackEvent("create-todo", metrics: metrics);
                 return req.CreateResponse(HttpStatusCode.Created, todo);
             }
